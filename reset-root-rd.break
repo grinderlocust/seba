@@ -1,0 +1,16 @@
+#RESET ROOT PASSWORD with rd.break
+1. Boot system - press E
+2. Go to line linux16 /vmlinuz-3 and between rhgb quit and LANG\ type:  rd.break
+3. CTRL + X (to start)
+4. In the shell type:
+  switch_root:/# mount -o remount,rw /sysroot/
+  switch_root:/# chroot /sysroot/
+  sh-4.2# passwd
+  Changing the password for root.
+  New password:
+  Retype new password:
+  passwd: all authentication tokens updates succesfully.
+  sh-4.2# touch /.autorelabel
+  sh-4.2# exit
+  exit
+  switch_root:/# reboot
