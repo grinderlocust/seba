@@ -1,6 +1,6 @@
 #!/bin/bash
 #A simple copy script
-cp $1 $2
+cp $1 "backup.$(date +%F_%R)"
 #Let`s verify the copy worked
 echo Details for $2
 ls -lh $2
