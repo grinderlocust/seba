@@ -1,0 +1,19 @@
+#get OS version
+Get-CimInstance Win32_OperatingSystem | Select-Ojbect Caption
+
+Caption
+-------
+Microsoft Windows Server 2016 Standard
+
+#get HTTPS check
+Invoke-WebRequest -Uri <URL> | Select-Object StatusCode
+
+StatusCode
+---------
+      203
+
+#Download zip
+Invoke-WebRequest -Uri https://example.com/agent.zip -OutFile agent.zip
+
+#Unzip
+Expand-Achive -LiteralPath .\agent.zip -DestinationPath C:\agent

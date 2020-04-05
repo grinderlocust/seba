@@ -46,3 +46,16 @@ steps:				#<- Create a job which utilzes the asseted demands
 #  - Jobs can run inside a Docker container on Windows and Linux agents
 #  - Provides more control over the job execution environment
 #  - Images can be retrived from Docker Hub or private registries
+
+
+
+# Developing Build/Release Pipelines
+# Preparing for Self-hosted Agents
+#
+# Check the operating system and runtime dependencies
+# https://githup.com/microsoft/azure-pipelines-agent/tree/master/docs/start
+#
+# Identify a user with permissions to administer the agent pool
+#
+# Genarate a Personal Access Token (PAT)
+# Azure Portal -> Your Name-> Secuirty -> PAT

@@ -3,3 +3,7 @@ cat /dev/stdin | cut -d' ' -f 2,3 | sort
 
 #search in a path by pattern
 grep -rnw '/PATH/TO/SEARCH/' -e 'PATTERN'
+
+#search http request
+url="https://example.com/site"
+wget ${url} 2>&1 | egrep "HTTP"
