@@ -1,0 +1,48 @@
+#Azure DevOps - Manage Azure Pipelines Infrastructure
+
+#Pipeline Jobs
+# - The smallest unit of organization is a pipeline
+# - Consists of a series of steps & can be combined into stages
+# - Can be run across a range of different compute platforms
+
+# Sample Job
+
+job: Sample_Job			#<- Use 'job:' when you want to provide additional properties like 'timeoutInMinutes:'
+timeoutInMinutes: 10
+pool:				#<- 'pool' and 'vmImage' are needed when you want to run the job against a Hosted Agent
+  vmImage: 'ubuntu-16.04'
+steps:				#<- 'steps:' consist of multiple discrete actions, like porcessing a Bash script on the agent which is runnning the job
+  - bash: echo "Hello world"
+
+
+# Agent Pool Jobs
+# - run on a dedicated or assigned system contained within a pool
+# - The capabilities of the ystem determine the jobs which can be run
+# - Jobs can only be run if the pool has an agent available
+
+# Server Jobs
+# - Jobs are executed directly on the Azure DevOps server
+# - Jobs are executed without an agent, so range of jobs are limited
+# - Use 'pool: server' or 'server: true" to use server jobs
+
+# Using Agent Demands
+#  - Specifies what capabilities the agent must have
+#  - Linked to operating system, applications and versions
+#  - Multiple demands can be specified for each job
+#  - Demands can be asserted manually or automatically
+
+pool:
+  name: privatePool		#<- Specify the name of the private pool
+  demands:			#<- Specify multiple demands (if the task does not autmomatically asserts demands)
+   - agent.os -equals Linux
+   - python3 - equals /usr/bin/python3
+steps:				#<- Create a job which utilzes the asseted demands
+ - task: PythonScript@0
+   inputs:
+     scriptSource: inline
+     script: print("hello, World!")
+
+# Container Jobs
+#  - Jobs can run inside a Docker container on Windows and Linux agents
+#  - Provides more control over the job execution environment
+#  - Images can be retrived from Docker Hub or private registries
