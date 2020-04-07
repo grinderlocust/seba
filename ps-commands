@@ -1,3 +1,8 @@
+#Re-index the WSUS Database
+#https://gallery.technet.microsoft.com/scriptcenter/6f8cde49-5c52-4abd-9820-f1d270ddea61#content
+sqlcmd -S np:\\.\pipe\MICROSOFT##WID\tsql\query -i <scriptLocation>\WsusDBMaintenance.sql
+
+
 #get OS version
 Get-CimInstance Win32_OperatingSystem | Select-Ojbect Caption
 
