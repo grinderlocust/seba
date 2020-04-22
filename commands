@@ -14,8 +14,14 @@ wget ${url} 2>&1 | egrep "HTTP"
 find / -executable -name samba
 samba --version
 
+#How to use sed for URL replacement/path
+echo 'I think http://www.find.com/page is my favorite' | 
+    sed 's,http://www.find.com/page,http://www.replace.com/page,g'
 
-
+#Use alias git add-commit
+git config --global alias.add-commit '!git add -A && git commit'
+#usecase
+git add-commit -m 'My commit message'
 
 ##########################################################
 ##			SumoLogic			##
@@ -30,6 +36,8 @@ samba --version
 * | count_frequent(_sourceName)
 
 
+
+
 ##########################################################
 ##			POWERSHELL	    		##
 #
@@ -38,6 +46,8 @@ samba --version
 #https://gallery.technet.microsoft.com/scriptcenter/6f8cde49-5c52-4abd-9820-f1d270ddea61#content
 sqlcmd -S np:\\.\pipe\MICROSOFT##WID\tsql\query -i <scriptLocation>\WsusDBMaintenance.sql
 
+#Set proxy server
+netsh winhttp set proxy < Address of proxy server >
 
 #get OS version
 Get-CimInstance Win32_OperatingSystem | Select-Ojbect Caption
