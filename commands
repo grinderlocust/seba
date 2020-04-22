@@ -1,27 +1,37 @@
-###################################ZZcZZ
-
+###########################################################
+##                    Linux                             ##
+#
+####################################################
 #cat the file representing STDIN, cut setting the delimiter to a space, fields 2 and 3 then sort the output.
 cat /dev/stdin | cut -d' ' -f 2,3 | sort
 
+
+###########################
 #search in a path by pattern
 grep -rnw '/PATH/TO/SEARCH/' -e 'PATTERN'
 
+###################
 #search http request
 url="https://example.com/site"
 wget ${url} 2>&1 | egrep "HTTP"
 
+###########################
 #search executable/versions
 find / -executable -name samba
 samba --version
 
+#######################################
 #How to use sed for URL replacement/path
 echo 'I think http://www.find.com/page is my favorite' | 
     sed 's,http://www.find.com/page,http://www.replace.com/page,g'
 
+
+########################
 #Use alias git add-commit
 git config --global alias.add-commit '!git add -A && git commit'
 #usecase
 git add-commit -m 'My commit message'
+
 
 ##########################################################
 ##			SumoLogic			##
@@ -46,9 +56,13 @@ git add-commit -m 'My commit message'
 #https://gallery.technet.microsoft.com/scriptcenter/6f8cde49-5c52-4abd-9820-f1d270ddea61#content
 sqlcmd -S np:\\.\pipe\MICROSOFT##WID\tsql\query -i <scriptLocation>\WsusDBMaintenance.sql
 
+################
 #Set proxy server
 netsh winhttp set proxy < Address of proxy server >
+#remove/reset proxy server
+netsh winhttp reset proxy
 
+###############
 #get OS version
 Get-CimInstance Win32_OperatingSystem | Select-Ojbect Caption
 
@@ -56,6 +70,7 @@ Caption
 -------
 Microsoft Windows Server 2016 Standard
 
+###############
 #get HTTPS check
 Invoke-WebRequest -Uri <URL> | Select-Object StatusCode
 
@@ -63,8 +78,9 @@ StatusCode
 ---------
       203
 
+############
 #Download zip
 Invoke-WebRequest -Uri https://example.com/agent.zip -OutFile agent.zip
-
+#########
 #Unzip
 Expand-Achive -LiteralPath .\agent.zip -DestinationPath C:\agent
