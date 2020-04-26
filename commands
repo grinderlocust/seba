@@ -18,10 +18,18 @@ samba --version
 echo 'I think http://www.find.com/page is my favorite' | 
     sed 's,http://www.find.com/page,http://www.replace.com/page,g'
 
-#Use alias git add-commit
-git config --global alias.add-commit '!git add -A && git commit'
-#usecase
-git add-commit -m 'My commit message'
+####################################
+#####  Initialize a new disk  ######
+#Check your connected disk
+dmesg | grep SCSI
+# - dmesg - kernel messages
+# - SCSI - disk controller
+# Initialize the new disk using fdisk (sdc in this case)
+(echo n; echo p; echo 1; echo ; echo ; echo w) | sudo fdisk /dev/sdc
+#write a file system to the partition with mkfs
+sudo mkfs -t ext4 /dev/sdc1
+#Mount the drive to the file system, create a data folder and mount point folder and mount the drive
+sudo mkdir /data && sudo mount /dev/sdc1 /data
 
 ##########################################################
 ##			SumoLogic			##
