@@ -20,6 +20,14 @@ wget ${url} 2>&1 | egrep "HTTP"
 find / -executable -name samba
 samba --version
 
+###########################
+#Set VIM editor display or hide line numbers
+set number
+
+#remove line numbers
+set nonumber
+
+
 #######################################
 #How to use sed for URL replacement/path
 echo 'I think http://www.find.com/page is my favorite' | 
