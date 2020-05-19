@@ -1,0 +1,44 @@
+az vm show \
+    --resource-group learn-4c1c936e-86fd-4bb4-a9bb-45afd9c67c6c \
+    --name SampleVM \
+    --query "osProfile.adminUsername"
+
+#can get the size assigned to our VM:
+az vm show \
+    --resource-group learn-4c1c936e-86fd-4bb4-a9bb-45afd9c67c6c \
+    --name SampleVM \
+    --query hardwareProfile.vmSize
+
+ 
+#retrieve all the IDs for your network interfaces, you can use the query
+az vm show \
+    --resource-group learn-4c1c936e-86fd-4bb4-a9bb-45afd9c67c6c \
+    --name SampleVM \
+    --query "networkProfile.networkInterfaces[].id"
+
+#This will return the results in tab-separated values that only include the actual data values with tab separators.
+az vm show \
+    --resource-group learn-4c1c936e-86fd-4bb4-a9bb-45afd9c67c6c \
+    --name SampleVM \
+    --query "networkProfile.networkInterfaces[].id" -o tsv
+
+
+#STOP/START/Restart VM
+az vm stop(start/restart --no-wait) \
+    --name SampleVM \
+    --resource-group learn-4c1c936e-86fd-4bb4-a9bb-45afd9c67c6c
+
+#Verify VM status
+az vm get-instance-view \
+    --name SampleVM \
+    --resource-group learn-4c1c936e-86fd-4bb4-a9bb-45afd9c67c6c \
+    --query "instanceView.statuses[?starts_with(code, 'PowerState/')].displayStatus" -o tsv
+
+#Verify IP address of VM
+az vm list-ip-addresses --name SampleVM --output table
+
+#Open port
+az vm open-port \
+    --port 80 \
+    --resource-group learn-4c1c936e-86fd-4bb4-a9bb-45afd9c67c6c \
+    --name SampleVM
